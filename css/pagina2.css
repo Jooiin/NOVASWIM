@@ -1,4 +1,29 @@
 /* =========================================================
+SCROLLBAR — DELGADA Y DISCRETA
+========================================================= */
+
+html{
+    scrollbar-width:thin;
+    scrollbar-color:rgba(255,255,255,.18) transparent;
+}
+
+html::-webkit-scrollbar{
+    width:5px;
+}
+
+html::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.18);
+    border-radius:999px;
+}
+
+html::-webkit-scrollbar-thumb:hover{
+    background:rgba(255,255,255,.32);
+}
+/* =========================================================
    PAGINA 2
    SISTEMA EDITORIAL
    LIMPIO · PREMIUM · RESPONSIVE
