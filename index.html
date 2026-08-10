@@ -494,7 +494,7 @@ PLANES
 
         <div class="comparison-program-recommended">
 
-            RECOMENDADO
+            
 
         </div>
 
@@ -687,46 +687,48 @@ document.addEventListener("DOMContentLoaded", function () {
        SOBRE MÍ
        ===================================================== */
 
-    const openAbout =
-        document.getElementById("openAbout");
+const openAbout =
+    document.getElementById("openAbout");
 
-    const closeAbout =
-        document.getElementById("closeAbout");
+const closeAbout =
+    document.getElementById("closeAbout");
 
-    const aboutModal =
-        document.getElementById("aboutModal");
-
-
-    if (openAbout && closeAbout && aboutModal) {
-
-        openAbout.addEventListener("click", function(e) {
-
-            e.preventDefault();
-
-            aboutModal.classList.add("active");
-
-        });
+const aboutModal =
+    document.getElementById("aboutModal");
 
 
-        closeAbout.addEventListener("click", function() {
+if (openAbout && closeAbout && aboutModal) {
 
-            aboutModal.classList.remove("active");
+    /* ================================
+       ABRIR SOBRE MÍ
+    ================================= */
 
-        });
+    openAbout.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        aboutModal.classList.add("active");
+
+        /* Bloquear página de fondo */
+        document.body.classList.add("modal-open");
+
+    });
 
 
-        aboutModal.addEventListener("click", function(e) {
+    /* ================================
+       CERRAR SOLO CON —
+    ================================= */
 
-            if (e.target === aboutModal) {
+    closeAbout.addEventListener("click", function() {
 
-                aboutModal.classList.remove("active");
+        aboutModal.classList.remove("active");
 
-            }
+        /* Restaurar scroll */
+        document.body.classList.remove("modal-open");
 
-        });
+    });
 
-    }
-
+}
 
 
     /* =====================================================
