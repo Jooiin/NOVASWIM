@@ -574,64 +574,132 @@ section{
     font-size:12px;
 }
 
+
 /* =========================================================
-   PROGRAMAS ONLINE
+PROGRAMAS ONLINE — CARRUSEL
 ========================================================= */
 
 .comparison-programs{
+    position:relative;
+
     width:100%;
-    max-width:1100px;
+    max-width:650px;
+
+    min-height:620px;
 
     margin:0 auto;
 
-    display:grid;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    gap:20px;
-
-    align-items:stretch;
+    perspective:1400px;
 }
 
+
 /* =========================================================
-   PROGRAMA
+PLAN
 ========================================================= */
 
 .comparison-program{
-    position:relative;
+    position:absolute;
+
+    top:0;
+    left:0;
 
     width:100%;
     min-width:0;
 
-    padding:34px 36px 30px;
+    padding:36px 38px 32px;
 
     display:flex;
     flex-direction:column;
 
-    background:#111;
+    background:
+        linear-gradient(
+            145deg,
+            #141414,
+            #0b0b0b
+        );
 
     border:1px solid rgba(255,255,255,.08);
 
-    border-radius:24px;
+    border-radius:26px;
 
     overflow:hidden;
 
+    opacity:0;
+
+    transform:
+        translateX(70px)
+        scale(.94)
+        rotateY(-12deg);
+
+    pointer-events:none;
+
+    transform-origin:center center;
+
     transition:
-        transform .3s ease,
-        border-color .3s ease,
-        background .3s ease;
+        transform .65s cubic-bezier(.22,1,.36,1),
+        opacity .45s ease,
+        border-color .35s ease;
+
+    backface-visibility:hidden;
 }
 
-.comparison-program:hover{
-    transform:translateY(-3px);
-
-    border-color:
-        rgba(255,255,255,.16);
-}
 
 /* =========================================================
-   PROGRAMA DESTACADO
+PLAN ACTIVO
+========================================================= */
+
+.comparison-program-active{
+    opacity:1;
+
+    transform:
+        translateX(0)
+        scale(1)
+        rotateY(0);
+
+    pointer-events:auto;
+
+    z-index:3;
+}
+
+
+/* =========================================================
+PLAN ANTERIOR
+========================================================= */
+
+.comparison-program.prev{
+    opacity:.35;
+
+    transform:
+        translateX(-45px)
+        scale(.94)
+        rotateY(10deg);
+
+    z-index:1;
+}
+
+
+/* =========================================================
+PLAN SIGUIENTE
+========================================================= */
+
+.comparison-program.next{
+    opacity:.45;
+
+    transform:
+        translateX(45px)
+        scale(.94)
+        rotateY(-10deg);
+
+    z-index:2;
+}
+
+
+/* =========================================================
+PLAN DESTACADO
 ========================================================= */
 
 .comparison-program-featured{
@@ -646,19 +714,20 @@ section{
         rgba(0,191,255,.22);
 }
 
+
 /* =========================================================
-   RECOMENDADO
+RECOMENDADO
 ========================================================= */
 
 .comparison-program-recommended{
     position:absolute;
 
-    top:22px;
+    top:23px;
     right:30px;
 
     color:var(--blue);
 
-    font-size:10px;
+    font-size:11px;
     font-weight:600;
 
     letter-spacing:2.5px;
@@ -666,8 +735,9 @@ section{
     white-space:nowrap;
 }
 
+
 /* =========================================================
-   PARTE SUPERIOR
+PARTE SUPERIOR
 ========================================================= */
 
 .comparison-program-top{
@@ -676,8 +746,8 @@ section{
     align-items:center;
     justify-content:space-between;
 
-    margin-bottom:28px;
-    padding-bottom:15px;
+    margin-bottom:29px;
+    padding-bottom:16px;
 
     border-bottom:
         1px solid rgba(255,255,255,.07);
@@ -686,7 +756,7 @@ section{
 .comparison-program-top span{
     color:#777;
 
-    font-size:11px;
+    font-size:12px;
     font-weight:500;
 
     letter-spacing:2.5px;
@@ -696,27 +766,33 @@ section{
     color:var(--blue);
 }
 
+
 /* =========================================================
-   CONTENIDO PRINCIPAL
+CONTENIDO
 ========================================================= */
 
 .comparison-program-content{
     display:flex;
     flex-direction:column;
 
-    gap:20px;
+    gap:21px;
 
-    margin-bottom:28px;
+    margin-bottom:29px;
 }
+
+
+/* =========================================================
+TÍTULO
+========================================================= */
 
 .comparison-program-heading span{
     display:block;
 
-    margin-bottom:12px;
+    margin-bottom:13px;
 
     color:var(--blue);
 
-    font-size:10px;
+    font-size:11px;
     letter-spacing:2.5px;
 }
 
@@ -725,27 +801,29 @@ section{
 
     color:#f5f5f7;
 
-    font-size:clamp(28px,3vw,38px);
+    font-size:
+        clamp(31px,4vw,40px);
 
     line-height:1;
 
     font-weight:650;
 
-    letter-spacing:-.04em;
+    letter-spacing:-.045em;
 }
 
 .comparison-program-heading p{
-    margin-top:12px;
+    margin-top:13px;
 
     color:#999;
 
-    font-size:15px;
+    font-size:16px;
 
     line-height:1.5;
 }
 
+
 /* =========================================================
-   DESCRIPCIÓN
+DESCRIPCIÓN
 ========================================================= */
 
 .comparison-program-description{
@@ -759,21 +837,23 @@ section{
 
     color:#aaa;
 
-    font-size:15px;
+    font-size:16px;
 
     line-height:1.7;
 
     letter-spacing:-.01em;
 }
 
+
 /* =========================================================
-   CARACTERÍSTICAS
+CARACTERÍSTICAS
 ========================================================= */
 
 .comparison-program-features{
     display:grid;
 
-    grid-template-columns:1fr;
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
 
     border-top:
         1px solid var(--border-soft);
@@ -785,27 +865,33 @@ section{
 .comparison-program-features > div{
     min-width:0;
 
-    padding:15px 4px;
+    padding:16px 5px;
 
     display:flex;
     align-items:center;
 
-    gap:14px;
+    gap:13px;
 
     border-top:
         1px solid var(--border-soft);
 }
 
-.comparison-program-features > div:first-child{
+.comparison-program-features > div:nth-child(1),
+.comparison-program-features > div:nth-child(2){
     border-top:none;
 }
 
+.comparison-program-features > div:nth-child(odd){
+    border-right:
+        1px solid var(--border-soft);
+}
+
 .comparison-program-features span{
-    min-width:22px;
+    min-width:23px;
 
     color:var(--blue);
 
-    font-size:9px;
+    font-size:10px;
 
     letter-spacing:2px;
 }
@@ -815,20 +901,23 @@ section{
 
     color:#d6d6d8;
 
-    font-size:11px;
+    font-size:12px;
 
     font-weight:500;
 
     line-height:1.45;
 
-    letter-spacing:.02em;
+    letter-spacing:.01em;
 }
 
+
 /* =========================================================
-   BOTÓN DEL PROGRAMA
+BOTÓN — ELEGIR PLAN
 ========================================================= */
 
 .comparison-program-button{
+    align-self:flex-start;
+
     display:inline-flex;
 
     align-items:center;
@@ -836,12 +925,12 @@ section{
 
     gap:10px;
 
-    margin-top:22px;
+    margin-top:23px;
 
-    min-width:165px;
-    height:43px;
+    min-width:175px;
+    height:46px;
 
-    padding:0 20px;
+    padding:0 22px;
 
     color:#050505;
 
@@ -851,7 +940,7 @@ section{
 
     text-decoration:none;
 
-    font-size:11px;
+    font-size:12px;
     font-weight:600;
 
     letter-spacing:.02em;
@@ -876,32 +965,6 @@ section{
 
 .comparison-program-button:hover i{
     transform:translateX(3px);
-}
-
-/* =========================================================
-   FOOTER COMPARATIVA
-========================================================= */
-
-.comparison-footer{
-    width:100%;
-
-    padding:
-        28px 20px 5px;
-
-    text-align:center;
-}
-
-.comparison-footer p{
-    width:100%;
-    max-width:610px;
-
-    margin:0 auto;
-
-    color:#85858a;
-
-    font-size:13px;
-
-    line-height:1.65;
 }
 
 /* =========================================================
@@ -1535,156 +1598,34 @@ footer p{
 
 @media(max-width:600px){
 
-    .header{
-        padding:
-            17px 20px;
-    }
-
-    .logo{
-        font-size:14px;
-    }
-
-    .logo span{
-        font-size:9px;
-        letter-spacing:3px;
-    }
-
-    nav{
-        max-width:58%;
-
-        gap:12px;
-    }
-
-    nav a{
-        font-size:10px;
-    }
-
-    .hero{
-        min-height:100svh;
-
-        padding:
-            125px 20px 65px;
-    }
-
-    .hero h1{
-        font-size:
-            clamp(38px,10vw,48px);
-    }
-
-    .hero-text{
-        font-size:15px;
-
-        line-height:1.6;
-    }
-
-    .hero-image{
-        width:220px;
-        height:285px;
-
-        margin-top:38px;
-    }
-
-    .buttons{
-        flex-direction:column;
-
-        gap:10px;
-
-        margin-top:28px;
-    }
-
-    .buttons .btn{
-        width:100%;
-        max-width:300px;
-    }
-
-    section{
-        padding:
-            65px 20px;
-    }
-
-    .section-title h2{
-        font-size:
-            clamp(30px,9vw,40px);
-    }
-
-    .about-content p{
-        font-size:
-            clamp(19px,5.8vw,27px);
-
-        line-height:1.5;
-    }
-
-    .card{
-        min-height:auto;
-
-        padding:
-            27px 23px;
-
-        border-radius:23px;
-    }
-
-    .card h3{
-        font-size:24px;
-    }
-
-    .card p,
-    .card li{
-        font-size:14px;
-    }
-
-    /* PROGRAMAS */
-
     .comparison-programs{
-        grid-template-columns:1fr;
+        width:100%;
 
-        gap:12px;
+        min-height:650px;
+
+        perspective:1100px;
     }
 
     .comparison-program{
         padding:
-            25px 20px;
+            27px 21px 25px;
 
         border-radius:24px;
     }
 
-    .comparison-program-recommended{
-        top:20px;
-        right:20px;
-
-        font-size:9px;
-
-        letter-spacing:2px;
-    }
-
-    .comparison-program-top{
-        margin-bottom:22px;
-    }
-
-    .comparison-program-content{
-        display:flex;
-
-        flex-direction:column;
-
-        gap:18px;
-
-        margin-bottom:25px;
-
-        padding:
-            5px 0 0;
-    }
-
     .comparison-program-heading h3{
-        font-size:32px;
+        font-size:
+            clamp(30px,8.5vw,36px);
     }
 
     .comparison-program-heading p{
-        font-size:14px;
+        font-size:15px;
     }
 
     .comparison-program-description p{
-        font-size:14px;
+        font-size:15px;
 
-        line-height:1.65;
+        line-height:1.68;
     }
 
     .comparison-program-features{
@@ -1693,7 +1634,7 @@ footer p{
 
     .comparison-program-features > div,
     .comparison-program-features > div:nth-child(n){
-        border-right:none !important;
+        border-right:none;
 
         border-top:
             1px solid var(--border-soft);
@@ -1703,109 +1644,16 @@ footer p{
         border-top:none;
     }
 
-    .comparison-program-features > div{
-        padding:
-            15px 3px;
-    }
-
     .comparison-program-features strong{
-        font-size:11px;
+        font-size:12px;
     }
 
     .comparison-program-button{
         width:100%;
 
-        margin-top:21px;
+        margin-top:22px;
     }
 
-    .comparison-footer{
-        padding:
-            27px 8px 0;
-    }
-
-    .comparison-footer p{
-        font-size:13px;
-    }
-
-    footer{
-        padding:
-            40px 18px 28px;
-    }
-
-    /* MODALES */
-
-    .about-overlay,
-    .method-overlay{
-        padding:12px;
-    }
-
-    .about-panel,
-    .method-panel{
-        width:100%;
-
-        max-height:92svh;
-
-        padding:
-            28px 18px;
-
-        border-radius:22px;
-    }
-
-    .about-panel h2,
-    .method-panel h2{
-        font-size:
-            clamp(30px,9vw,40px);
-
-        padding-right:40px;
-    }
-
-    .about-panel > p{
-        font-size:15px;
-
-        line-height:1.7;
-    }
-
-    /* TABLA MÉTODO */
-
-    .method-panel .comparison-header,
-    .method-panel .comparison-row{
-        grid-template-columns:
-            1.7fr 1fr 1fr;
-
-        padding-left:12px;
-        padding-right:12px;
-    }
-
-    .method-panel .comparison-row{
-        padding-top:14px;
-        padding-bottom:14px;
-    }
-
-    .method-panel .comparison-row span{
-        font-size:11px;
-        line-height:1.4;
-    }
-
-    .method-panel .comparison-row strong{
-        font-size:10px;
-        line-height:1.35;
-    }
-
-    .method-panel .comparison-plan{
-        font-size:10px;
-    }
-
-    .method-panel .comparison-footer{
-        padding:
-            27px 12px;
-    }
-
-    /* INTRO */
-
-    .intro-circle{
-        width:125px;
-        height:125px;
-    }
 }
 
 /* =========================================================
@@ -1814,49 +1662,13 @@ footer p{
 
 @media(max-width:380px){
 
-    .header{
-        padding:15px;
-    }
-
-    .logo{
-        font-size:13px;
-    }
-
-    nav{
-        max-width:60%;
-        gap:9px;
-    }
-
-    nav a{
-        font-size:9px;
-    }
-
-    section{
-        padding-left:16px;
-        padding-right:16px;
-    }
-
-    .hero{
-        padding-left:16px;
-        padding-right:16px;
-    }
-
-    .hero h1{
-        font-size:34px;
-    }
-
-    .hero-text{
-        font-size:14px;
-    }
-
-    .hero-image{
-        width:205px;
-        height:270px;
+    .comparison-programs{
+        min-height:670px;
     }
 
     .comparison-program{
         padding:
-            23px 17px;
+            24px 17px 22px;
     }
 
     .comparison-program-heading h3{
@@ -1864,18 +1676,13 @@ footer p{
     }
 
     .comparison-program-description p{
-        font-size:13px;
+        font-size:14px;
     }
 
     .comparison-program-features strong{
-        font-size:10px;
+        font-size:11px;
     }
 
-    .about-panel,
-    .method-panel{
-        padding:
-            25px 15px;
-    }
 }
 
 /* =========================================================
@@ -2188,4 +1995,141 @@ footer p{
     .training-cta-content p{
         font-size:13px;
     }
+}
+/* =========================================================
+   CONTROLES DEL CARRUSEL
+========================================================= */
+
+.comparison-programs{
+    position:relative;
+
+    cursor:grab;
+
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+.comparison-programs.is-dragging{
+    cursor:grabbing;
+}
+
+
+
+
+
+.plans-prev{
+    left:-65px;
+}
+
+
+.plans-next{
+    right:-65px;
+}
+
+
+.plans-prev:hover,
+.plans-next:hover{
+
+    background:
+        rgba(0,191,255,.12);
+
+    border-color:
+        rgba(0,191,255,.35);
+}
+
+
+.plans-prev:hover{
+    transform:
+        translate(-2px,-50%);
+}
+
+
+.plans-next:hover{
+    transform:
+        translate(2px,-50%);
+}
+
+
+.plans-prev i,
+.plans-next i{
+
+    font-size:11px;
+
+}
+
+
+/* =========================================================
+TABLET
+========================================================= */
+
+@media(max-width:900px){
+
+    .plans-prev{
+        left:-20px;
+    }
+
+    .plans-next{
+        right:-20px;
+    }
+
+}
+
+
+/* =========================================================
+MÓVIL
+========================================================= */
+
+@media(max-width:600px){
+
+    .comparison-programs{
+
+        cursor:grab;
+
+        touch-action:pan-y;
+
+    }
+
+
+    .plans-prev,
+    .plans-next{
+
+        width:36px;
+        height:36px;
+
+        top:auto;
+        bottom:-55px;
+
+        transform:none;
+
+    }
+
+
+    .plans-prev{
+
+        left:calc(50% - 50px);
+
+    }
+
+
+    .plans-next{
+
+        right:calc(50% - 50px);
+
+    }
+
+
+    .plans-prev:hover,
+    .plans-next:hover{
+
+        transform:none;
+
+    }
+
+}
+.comparison-program-button,
+.comparison-program-button *,
+.plans-prev,
+.plans-next{
+    user-select:none;
+    -webkit-user-select:none;
 }
